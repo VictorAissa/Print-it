@@ -32,28 +32,47 @@ for (let i = 0; i < slides.length; i++) {
 }
 
 const dotsArray = document.getElementsByClassName("dot");
-let activeDot = dotsArray[0];
-activeDot.classList.add("dot_selected");
+dotsArray[0].classList.add("dot_selected");
 
-let i = 0;
-document.slide.src = slides[i];
+let displayedSlide = 0;
+let nonDisplayedSlide;
 
 function rightSlideShow() {
-    document.slide.src = slides[i];
-    if (i < slides.length - 1) {
-        i++;
+    if (displayedSlide < slides.length - 1) {
+        displayedSlide++;
     } else {
-        i = 0;
+        displayedSlide = 0;
     }
+    document.slide.src = slides[displayedSlide];
+
+    let activeDot = dotsArray[displayedSlide];
+    if (0 < displayedSlide) {
+        nonDisplayedSlide = displayedSlide - 1;
+    } else {
+        nonDisplayedSlide = slides.length - 1;
+    }
+    let previousDot = dotsArray[nonDisplayedSlide];
+    activeDot.classList.add("dot_selected");
+    previousDot.classList.remove("dot_selected");
 }
 
 function leftSlideShow() {
-    document.slide.src = slides[i];
-    if (i > 0) {
-        i--;
+    if (displayedSlide > 0) {
+        displayedSlide--;
     } else {
-        i = slides.length - 1;
+        displayedSlide = slides.length - 1;
     }
+    document.slide.src = slides[displayedSlide];
+
+    let activeDot = dotsArray[displayedSlide];
+    if (displayedSlide < slides.length - 1) {
+        nonDisplayedSlide = displayedSlide + 1;
+    } else {
+        nonDisplayedSlide = 0;
+    }
+    let previousDot = dotsArray[nonDisplayedSlide];
+    activeDot.classList.add("dot_selected");
+    previousDot.classList.remove("dot_selected");
 }
 
 leftArrow.addEventListener("click", function () {
