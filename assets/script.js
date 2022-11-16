@@ -1,4 +1,4 @@
-const slides = [
+/*const slides = [
     {
         image: "slide1.jpg",
         tagLine:
@@ -17,22 +17,49 @@ const slides = [
         image: "slide4.png",
         tagLine: "Autocollants <span>avec découpe laser sur mesure</span>",
     },
-];
+];*/
+
+const slides = ["slide1.jpg", "slide2.jpg", "slide3.jpg", "slide4.png"];
 
 const leftArrow = document.getElementsByClassName("arrow_left")[0];
 
 const rightArrow = document.getElementsByClassName("arrow_right")[0];
 
-leftArrow.addEventListener("click", function () {
-    alert("left");
-});
-
-rightArrow.addEventListener("click", function () {
-    alert("right");
-});
-
-for (var i = 0; i < slides.length; i++) {
+for (let i = 0; i < slides.length; i++) {
     const dot = document.createElement("div");
     document.getElementsByClassName("dots")[0].appendChild(dot);
     dot.classList.add("dot");
 }
+
+const dotsArray = document.getElementsByClassName("dot");
+let activeDot = dotsArray[0];
+activeDot.classList.add("dot_selected");
+
+let i = 0;
+document.slide.src = slides[i];
+
+function rightSlideShow() {
+    document.slide.src = slides[i];
+    if (i < slides.length - 1) {
+        i++;
+    } else {
+        i = 0;
+    }
+}
+
+function leftSlideShow() {
+    document.slide.src = slides[i];
+    if (i > 0) {
+        i--;
+    } else {
+        i = slides.length - 1;
+    }
+}
+
+leftArrow.addEventListener("click", function () {
+    leftSlideShow();
+});
+
+rightArrow.addEventListener("click", function () {
+    rightSlideShow();
+});
