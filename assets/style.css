@@ -194,7 +194,7 @@ header {
     min-height: 470px;
     position: relative;
 }
-#banner .background_image {
+#banner img.background_image {
     position: absolute;
     width: 100%;
     height: 100%;
