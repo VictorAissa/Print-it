@@ -1,37 +1,36 @@
-/*const slides = [
+const slides = [
     {
-        image: "slide1.jpg",
+        image: "assets/images/slideshow/slide1.jpg",
         tagLine:
             "Impressions tous formats <span>en boutique et en ligne</span>",
     },
     {
-        image: "slide2.jpg",
+        image: "assets/images/slideshow/slide2.jpg",
         tagLine:
             "Tirages haute définition grand format <span>pour vos bureaux et events</span>",
     },
     {
-        image: "slide3.jpg",
+        image: "assets/images/slideshow/slide3.jpg",
         tagLine: "Grand choix de couleurs <span>de CMJN aux pantones</span>",
     },
     {
-        image: "slide4.png",
+        image: "assets/images/slideshow/slide4.png",
         tagLine: "Autocollants <span>avec découpe laser sur mesure</span>",
     },
-];*/
-
-const slides = ["slide1.jpg", "slide2.jpg", "slide3.jpg", "slide4.png"];
+];
 
 const leftArrow = document.getElementsByClassName("arrow_left")[0];
 
 const rightArrow = document.getElementsByClassName("arrow_right")[0];
 
-for (let i = 0; i < slides.length; i++) {
+for (let i of slides) {
     const dot = document.createElement("div");
-    document.getElementsByClassName("dots")[0].appendChild(dot);
+    document.querySelector(".dots").appendChild(dot);
     dot.classList.add("dot");
 }
 
 const dotsArray = document.getElementsByClassName("dot");
+
 dotsArray[0].classList.add("dot_selected");
 
 let displayedSlide = 0;
@@ -43,16 +42,18 @@ function rightSlideShow() {
     } else {
         displayedSlide = 0;
     }
-    document.slide.src = slides[displayedSlide];
+    document.querySelector("#banner img").src = slides[displayedSlide].image;
+    document.querySelector("#banner p").innerHTML =
+        slides[displayedSlide].tagLine;
 
     let activeDot = dotsArray[displayedSlide];
+    activeDot.classList.add("dot_selected");
     if (0 < displayedSlide) {
         nonDisplayedSlide = displayedSlide - 1;
     } else {
         nonDisplayedSlide = slides.length - 1;
     }
     let previousDot = dotsArray[nonDisplayedSlide];
-    activeDot.classList.add("dot_selected");
     previousDot.classList.remove("dot_selected");
 }
 
@@ -62,16 +63,18 @@ function leftSlideShow() {
     } else {
         displayedSlide = slides.length - 1;
     }
-    document.slide.src = slides[displayedSlide];
+    document.querySelector("#banner img").src = slides[displayedSlide].image;
+    document.querySelector("#banner p").innerHTML =
+        slides[displayedSlide].tagLine;
 
     let activeDot = dotsArray[displayedSlide];
+    activeDot.classList.add("dot_selected");
     if (displayedSlide < slides.length - 1) {
         nonDisplayedSlide = displayedSlide + 1;
     } else {
         nonDisplayedSlide = 0;
     }
     let previousDot = dotsArray[nonDisplayedSlide];
-    activeDot.classList.add("dot_selected");
     previousDot.classList.remove("dot_selected");
 }
 
