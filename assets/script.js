@@ -25,8 +25,8 @@ let nonDisplayedSlide;
 
 slides.forEach(() => {
     const dot = document.createElement("div");
-    document.querySelector(".dots").appendChild(dot);
     dot.classList.add("dot");
+    document.querySelector(".dots").appendChild(dot);
 });
 
 const dotsArray = document.getElementsByClassName("dot");
@@ -79,10 +79,10 @@ const leftSlideShow = () => {
     previousDot.classList.remove("dot_selected");
 };
 
-leftArrow.addEventListener("click", function () {
+leftArrow.addEventListener("click", () => {
     leftSlideShow();
 });
 
-rightArrow.addEventListener("click", function () {
+rightArrow.addEventListener("click", () => {
     rightSlideShow();
 });
